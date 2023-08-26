@@ -13,3 +13,4 @@ while True:
     user_input = int(input())
     if user_input == 2:
         break
+
