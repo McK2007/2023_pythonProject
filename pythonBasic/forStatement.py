@@ -22,3 +22,5 @@ for i in scores:
     print(i, x)
 x /= len(scores)
 print('average=', x)
+# for i in range(0, 10):
+#     print(i)
