@@ -14,7 +14,8 @@ def menuPrint():
 
 def getRandomWord():
     import random
-    words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'mcdonalds', 'fluent', 'voca', 'galaxy']
+    words = ['MCdonalds']
+        # 'hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'MCdonalds', 'fluent', 'voca', 'galaxy']
     return words[random.randrange(0, len(words))]
 
 hangman_input_history = []
@@ -28,25 +29,39 @@ def getHangmanInput():
                 print("이미 입력한 값입니다. 새로운 알파벳을 입력해주세요.")
             else:
                 return alphabet
+                break
 
 CorrectWord = ''
 word = ''
-def printCorrectWord(a, b):
-    for i in range(0, len(b))
+def printCorrectWord(b, c):
+    returnWord = ''
+    for i in range(0, len(b)):
+        if CorrectWord[2 * i] == '_':
+            if b[i].lower() == c:
+                returnWord = returnWord + b[i] + ' '
+            else:
+                returnWord = returnWord + '_ '
+        else:
+            returnWord  = returnWord + CorrectWord[2 * i] + ' '
+    return returnWord
 
 def runHangMan():
     global hangman_input_history
     hangman_input_history = []
     word = getRandomWord()
     chance = 8
+    global CorrectWord
+    CorrectWord = '_ ' * len(word)
     countCorrect = 0
+    print(CorrectWord)
     while chance > 0:
         alphabet = getHangmanInput()
         hangman_input_history.append(alphabet)
-        if word.find(alphabet) != -1:
+        if word.find(alphabet) != -1 or word.find(alphabet.upper()) != -1:
             print('correct')
             countCorrect += word.count(alphabet)
-            print(countCorrect)
+            CorrectWord = printCorrectWord(word, alphabet)
+            print(CorrectWord)
             if countCorrect == len(word):
                 print('alive')
                 break
@@ -54,6 +69,15 @@ def runHangMan():
         else:
             chance -= 1
             print('LEFT CHANCE: ', chance)
+
+        # printStr = ''
+        # for i in word:
+        #     if i in hangman_input_history:
+        #         printStr = printStr + i
+        #     else:
+        #         printStr = printStr +'_'
+        #     printStr = printStr + ' '
+        # print(printStr)
 
 
 def runUpDown():
@@ -63,28 +87,30 @@ def runUpDown():
     chance = 3
 
     while chance > 0:
-        user_input = int(input())
-        if answer == user_input:
-            print('correct')
-            break
-        else:
-            chance -= 1
-            if chance > 0:
-                print('chance:', chance)
-                print('try again')
-                if user_input < answer:
-                    print('up')
-                else:
-                    print('down')
+        user_input = input()
+        if user_input.isnumeric():
+            user_input = int(user_input)
+            if answer == user_input:
+                print('correct')
+                break
             else:
-                print('game_over')
+                chance -= 1
+                if chance > 0:
+                    print('chance:', chance)
+                    print('try again')
+                    if user_input < answer:
+                        print('up')
+                    else:
+                        print('down')
+                else:
+                    print('game_over')
 
 
 user_Input = -1
 while user_Input != 0:
     menuPrint()
-    user_Input = int(input('select menu\n'))
-    if user_Input == 1:
+    user_Input = input('select menu\n')
+    if user_Input == '1':
         runHangMan()
-    elif user_Input == 2:
+    elif user_Input == '2':
         runUpDown()
