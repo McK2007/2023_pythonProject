@@ -14,7 +14,7 @@ def menuPrint():
 
 def getRandomWord():
     import random
-    words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'MCdonalds', 'fluent', 'voca', 'galaxy']
+    words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'mcdonalds', 'fluent', 'voca', 'galaxy']
     return words[random.randrange(0, len(words))]
 
 hangman_input_history = []
@@ -28,16 +28,29 @@ def getHangmanInput():
                 print("이미 입력한 값입니다. 새로운 알파벳을 입력해주세요.")
             else:
                 return alphabet
+
+CorrectWord = ''
+word = ''
+def printCorrectWord(a, b):
+    for i in range(0, len(b))
+
 def runHangMan():
+    global hangman_input_history
     hangman_input_history = []
     word = getRandomWord()
-    print('_'*len(word))
     chance = 8
+    countCorrect = 0
     while chance > 0:
         alphabet = getHangmanInput()
         hangman_input_history.append(alphabet)
         if word.find(alphabet) != -1:
             print('correct')
+            countCorrect += word.count(alphabet)
+            print(countCorrect)
+            if countCorrect == len(word):
+                print('alive')
+                break
+
         else:
             chance -= 1
             print('LEFT CHANCE: ', chance)
