@@ -24,7 +24,7 @@ def getHangmanInput():
         user_input = input("Input alphabet ::: ")
         if(user_input.isalpha()): #알파벳인지 확인
             alphabet = user_input[0].lower()
-            if(hangman_input_history.index(alphabet)): #이미 입력된 값인지 확인
+            if(alphabet in hangman_input_history): #이미 입력된 값인지 확인
                 print("이미 입력한 값입니다. 새로운 알파벳을 입력해주세요.")
             else:
                 return alphabet
@@ -32,7 +32,16 @@ def runHangMan():
     hangman_input_history = []
     word = getRandomWord()
     print('_'*len(word))
-    alpahbet = getHangmanInput()
+    chance = 8
+    while chance > 0:
+        alphabet = getHangmanInput()
+        hangman_input_history.append(alphabet)
+        if word.find(alphabet) != -1:
+            print('correct')
+        else:
+            chance -= 1
+            print('LEFT CHANCE: ', chance)
+
 
 def runUpDown():
     import random
@@ -62,7 +71,7 @@ user_Input = -1
 while user_Input != 0:
     menuPrint()
     user_Input = int(input('select menu\n'))
-    if user_input == 1:
+    if user_Input == 1:
         runHangMan()
     elif user_Input == 2:
         runUpDown()
