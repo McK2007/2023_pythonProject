@@ -28,17 +28,29 @@ def getHangmanInput():
                 print("이미 입력한 값입니다. 새로운 알파벳을 입력해주세요.")
             else:
                 return alphabet
+                break
 
 CorrectWord = ''
 word = ''
-def printCorrectWord(a, b):
-    for i in range(0, len(b))
+def printCorrectWord(b, c):
+    returnWord = ''
+    for i in range(0, len(b)):
+        if CorrectWord[i] == '_':
+            if b[i] == c:
+                returnWord = returnWord + c
+            else:
+                returnWord = returnWord + '_'
+        else:
+            returnWord  = returnWord + CorrectWord[i]
+    return returnWord
 
 def runHangMan():
     global hangman_input_history
     hangman_input_history = []
     word = getRandomWord()
     chance = 8
+    global CorrectWord
+    CorrectWord = '_' * len(word)
     countCorrect = 0
     while chance > 0:
         alphabet = getHangmanInput()
@@ -46,7 +58,8 @@ def runHangMan():
         if word.find(alphabet) != -1:
             print('correct')
             countCorrect += word.count(alphabet)
-            print(countCorrect)
+            CorrectWord = printCorrectWord(word, alphabet)
+            print(CorrectWord)
             if countCorrect == len(word):
                 print('alive')
                 break
