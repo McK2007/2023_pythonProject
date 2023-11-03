@@ -14,7 +14,7 @@ def menuPrint():
 
 def getRandomWord():
     import random
-    words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'mcdonalds', 'fluent', 'voca', 'galaxy']
+    words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'MCdonalds', 'fluent', 'voca', 'galaxy']
     return words[random.randrange(0, len(words))]
 
 hangman_input_history = []
@@ -36,8 +36,8 @@ def printCorrectWord(b, c):
     returnWord = ''
     for i in range(0, len(b)):
         if CorrectWord[i] == '_':
-            if b[i] == c:
-                returnWord = returnWord + c
+            if b[i].lower() == c:
+                returnWord = returnWord + b[i]
             else:
                 returnWord = returnWord + '_'
         else:
@@ -55,7 +55,7 @@ def runHangMan():
     while chance > 0:
         alphabet = getHangmanInput()
         hangman_input_history.append(alphabet)
-        if word.find(alphabet) != -1:
+        if word.find(alphabet) != -1 or word.find(alphabet.upper()) != -1:
             print('correct')
             countCorrect += word.count(alphabet)
             CorrectWord = printCorrectWord(word, alphabet)
