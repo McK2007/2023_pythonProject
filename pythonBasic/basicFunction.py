@@ -14,8 +14,7 @@ def menuPrint():
 
 def getRandomWord():
     import random
-    words = ['MCdonalds']
-        # 'hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'MCdonalds', 'fluent', 'voca', 'galaxy']
+    words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'MCdonalds', 'fluent', 'voca', 'galaxy']
     return words[random.randrange(0, len(words))]
 
 hangman_input_history = []
