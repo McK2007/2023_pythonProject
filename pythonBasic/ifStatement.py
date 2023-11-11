@@ -1,6 +1,6 @@
-a = input('이번 시험의 점수를 입력하시오\n')
-if type(a) != str:
-    score = float(a)
+score = input('이번 시험의 점수를 입력하시오\n')
+if type(score) != str:
+    score = float(score)
     if score > 100 or score < 0:
         print('값을 잘못 입력하셨습니다')
     elif score >= 90:
