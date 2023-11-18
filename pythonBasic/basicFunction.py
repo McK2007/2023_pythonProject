@@ -42,6 +42,13 @@ def printCorrectWord(b, c):
                 returnWord = returnWord + '_ '
         else:
             returnWord  = returnWord + CorrectWord[2 * i] + ' '
+        if CorrectWord[i] == '_':
+            if b[i].lower() == c:
+                returnWord = returnWord + b[i]
+            else:
+                returnWord = returnWord + '_'
+        else:
+            returnWord  = returnWord + CorrectWord[i]
     return returnWord
 
 def runHangMan():
@@ -51,6 +58,7 @@ def runHangMan():
     chance = 8
     global CorrectWord
     CorrectWord = '_ ' * len(word)
+    CorrectWord = '_' * len(word)
     countCorrect = 0
     print(CorrectWord)
     while chance > 0:
@@ -113,4 +121,6 @@ while user_Input != 0:
     if user_Input == '1':
         runHangMan()
     elif user_Input == '2':
+        runUpDown()
+    elif user_Input == 2:
         runUpDown()
