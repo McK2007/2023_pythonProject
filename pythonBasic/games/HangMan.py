@@ -1,17 +1,3 @@
-# def tmpFunction(x):
-#     return 3*x +5
-# x = int(input())
-# print(tmpFunction(x))
-
-# 게임
-
-def menuPrint():
-    print('========GAME========')
-    print('1.행맨')
-    print('2.업다운')
-    print('0.종료')
-    print('====================')
-
 def getRandomWord():
     import random
     words = ['hang', 'pretty', 'apple', 'ant', 'water', 'samsung', 'MCdonalds', 'fluent', 'voca', 'galaxy']
@@ -42,13 +28,6 @@ def printCorrectWord(b, c):
                 returnWord = returnWord + '_ '
         else:
             returnWord  = returnWord + CorrectWord[2 * i] + ' '
-        if CorrectWord[i] == '_':
-            if b[i].lower() == c:
-                returnWord = returnWord + b[i]
-            else:
-                returnWord = returnWord + '_'
-        else:
-            returnWord  = returnWord + CorrectWord[i]
     return returnWord
 
 def runHangMan():
@@ -58,7 +37,6 @@ def runHangMan():
     chance = 8
     global CorrectWord
     CorrectWord = '_ ' * len(word)
-    CorrectWord = '_' * len(word)
     countCorrect = 0
     print(CorrectWord)
     while chance > 0:
@@ -85,42 +63,3 @@ def runHangMan():
         #         printStr = printStr +'_'
         #     printStr = printStr + ' '
         # print(printStr)
-
-
-
-def runUpDown():
-    import random
-
-    answer = random.randrange(0, 10)
-    chance = 3
-
-    while chance > 0:
-        user_input = input()
-        if user_input.isnumeric():
-            user_input = int(user_input)
-            if answer == user_input:
-                print('correct')
-                break
-            else:
-                chance -= 1
-                if chance > 0:
-                    print('chance:', chance)
-                    print('try again')
-                    if user_input < answer:
-                        print('up')
-                    else:
-                        print('down')
-                else:
-                    print('game_over')
-
-
-user_Input = -1
-while user_Input != 0:
-    menuPrint()
-    user_Input = input('select menu\n')
-    if user_Input == '1':
-        runHangMan()
-    elif user_Input == '2':
-        runUpDown()
-    elif user_Input == 2:
-        runUpDown()
